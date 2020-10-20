@@ -2,37 +2,39 @@ using System;
 
     class Program
     {
-     public  static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("Digite os valores: ");
-            double primeiro_valor = double.Parse(Console.ReadLine());
-            double segundo_valor = double.Parse(Console.ReadLine());
-            double c = Maior(primeiro_valor, segundo_valor);
-            Console.WriteLine($"Maior valor: {c}");
-
-            double d = Matematica.Maior(primeiro_valor, segundo_valor);
-            Matematica m = new Matematica();
-
-            double e = m.Menor(primeiro_valor, segundo_valor);
-            Console.WriteLine($"Menor valor: {e}");
+            int x = int.Parse(Console.ReadLine());
+            int y = int.Parse(Console.ReadLine());
+            int z = int.Parse(Console.ReadLine());
+           
+            Ordenar(true, ref x, ref y, ref z);
+            Console.WriteLine($"Ordem Crescente  : {x} {y} {z}");
+            
+            Ordenar(false, ref x, ref y, ref z);
+            Console.WriteLine($"Ordem Decrescente: {x} {y} {z}");
             Console.ReadKey();
         }
-        public static double Maior(double x, double y)
+        static void Ordenar(bool crescente, ref int x, ref int y, ref int z)
         {
-           
-            return x > y ? x : y;
-        }
-    }
-    class Matematica
-    {
-        public static double Maior(double x, double y)
-        {
-           
-            return x > y ? x : y;
-        }
-        public double Menor(double x, double y)
-        {
-           
-            return x < y ? x : y;
+            
+            int a;
+            if (crescente)
+            {
+                if (x > y) { a = x; x = y; y = a; }
+
+                if (x > z) { a = x; x = z; z = a; }
+
+                if (y > z) { a = y; y = z; z = a; }
+            }
+            else
+            {
+                if (x < y) { a = x; x = y; y = a; }
+
+                if (x < z) { a = x; x = z; z = a; }
+
+                if (y < z) { a = y; y = z; z = a; }
+            }
         }
     }
